@@ -3,7 +3,7 @@ package pl.kiszkiel.realpay.service;
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.OfflinePlayer;
 
-public interface IPlayerBankAccountService {
+public interface IPlayerBankingService {
     public boolean hasAccount(OfflinePlayer offlinePlayer);
 
     public double getBalance(OfflinePlayer player);

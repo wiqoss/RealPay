@@ -5,8 +5,8 @@ import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import pl.kiszkiel.realpay.paper.RealPay;
-import pl.kiszkiel.realpay.service.IBankAccountService;
-import pl.kiszkiel.realpay.service.IPlayerBankAccountService;
+import pl.kiszkiel.realpay.service.IIndependentBankingService;
+import pl.kiszkiel.realpay.service.IPlayerBankingService;
 
 import java.util.List;
 
@@ -107,7 +107,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public boolean hasAccount(OfflinePlayer player) {
-        return getPlayerBankAccountService().hasAccount(player);
+        return getPlayerBankingService().hasAccount(player);
     }
 
     /**
@@ -151,7 +151,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public double getBalance(OfflinePlayer player) {
-        return getPlayerBankAccountService().getBalance(player);
+        return getPlayerBankingService().getBalance(player);
     }
 
     /**
@@ -196,7 +196,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public boolean has(OfflinePlayer player, double amount) {
-        return getPlayerBankAccountService().has(player, amount);
+        return getPlayerBankingService().has(player, amount);
     }
 
     /**
@@ -243,7 +243,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public EconomyResponse withdrawPlayer(OfflinePlayer player, double amount) {
-        return getPlayerBankAccountService().withdraw(player, amount);
+        return getPlayerBankingService().withdraw(player, amount);
     }
 
     /**
@@ -290,7 +290,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public EconomyResponse depositPlayer(OfflinePlayer player, double amount) {
-        return getPlayerBankAccountService().deposit(player, amount);
+        return getPlayerBankingService().deposit(player, amount);
     }
 
     /**
@@ -337,7 +337,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public EconomyResponse createBank(String name, OfflinePlayer player) {
-        return getBankAccountService().createBank(name, player);
+        return getIndependentBankingService().createBank(name, player);
     }
 
     /**
@@ -348,7 +348,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public EconomyResponse deleteBank(String name) {
-        return getBankAccountService().deleteBank(name);
+        return getIndependentBankingService().deleteBank(name);
     }
 
     /**
@@ -359,7 +359,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public EconomyResponse bankBalance(String name) {
-        return getBankAccountService().getBalance(name);
+        return getIndependentBankingService().getBalance(name);
     }
 
     /**
@@ -371,7 +371,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public EconomyResponse bankHas(String name, double amount) {
-        return getBankAccountService().has(name, amount);
+        return getIndependentBankingService().has(name, amount);
     }
 
     /**
@@ -383,7 +383,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public EconomyResponse bankWithdraw(String name, double amount) {
-        return getBankAccountService().withdraw(name, amount);
+        return getIndependentBankingService().withdraw(name, amount);
     }
 
     /**
@@ -395,7 +395,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public EconomyResponse bankDeposit(String name, double amount) {
-        return getBankAccountService().deposit(name, amount);
+        return getIndependentBankingService().deposit(name, amount);
     }
 
     /**
@@ -417,7 +417,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public EconomyResponse isBankOwner(String name, OfflinePlayer player) {
-        return getBankAccountService().isBankOwner(name, player);
+        return getIndependentBankingService().isBankOwner(name, player);
     }
 
     /**
@@ -439,7 +439,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public EconomyResponse isBankMember(String name, OfflinePlayer player) {
-        return getBankAccountService().isBankMember(name, player);
+        return getIndependentBankingService().isBankMember(name, player);
     }
 
     /**
@@ -449,7 +449,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public List<String> getBanks() {
-        return getBankAccountService().getBanks();
+        return getIndependentBankingService().getBanks();
     }
 
     /**
@@ -469,7 +469,7 @@ public class EconomyImpl implements Economy {
      */
     @Override
     public boolean createPlayerAccount(OfflinePlayer player) {
-        return getPlayerBankAccountService().createPlayerAccount(player);
+        return getPlayerBankingService().createPlayerAccount(player);
     }
 
     /**
@@ -495,11 +495,11 @@ public class EconomyImpl implements Economy {
         return createPlayerAccount(player);
     }
 
-    public IPlayerBankAccountService getPlayerBankAccountService() {
-        return Bukkit.getServicesManager().getRegistration(IPlayerBankAccountService.class).getProvider();
+    public IPlayerBankingService getPlayerBankingService() {
+        return Bukkit.getServicesManager().getRegistration(IPlayerBankingService.class).getProvider();
     }
 
-    public IBankAccountService getBankAccountService() {
-        return Bukkit.getServicesManager().getRegistration(IBankAccountService.class).getProvider();
+    public IIndependentBankingService getIndependentBankingService() {
+        return Bukkit.getServicesManager().getRegistration(IIndependentBankingService.class).getProvider();
     }
 }

@@ -5,7 +5,7 @@ import org.bukkit.OfflinePlayer;
 
 import java.util.List;
 
-public interface IBankAccountService {
+public interface IIndependentBankingService {
     public EconomyResponse createBank(String name, OfflinePlayer player);
 
     public EconomyResponse deleteBank(String name);
