@@ -1,5 +1,6 @@
 # Currency displayed in game
-currency: "€"
+currency_name_plural: "euros"
+currency_name_singular: "euro"
 # Storage types
 storage:
   use_type: mysql

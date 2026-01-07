@@ -18,7 +18,7 @@ public final class RealPay extends JavaPlugin {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(RealPay.class);
     private Database database;
-    private String currency;
+    private String currencyNamePlural, currencyNameSingular;
 
     @Override
     public void onEnable() {
@@ -49,8 +49,7 @@ public final class RealPay extends JavaPlugin {
         loadTranslations();
 
         // Load database and register service
-        loadDatabase();
-
+        //loadDatabase();
 
         try {
             //Bukkit.getServicesManager().register(Economy.class, new VaultEconomyImpl(), this, ServicePriority.Normal);
@@ -58,8 +57,6 @@ public final class RealPay extends JavaPlugin {
         } catch (Exception ex) {
             throw new RuntimeException("Cannot Vault implementation:", ex);
         }
-
-        this.currency = getConfig().getString("currency");
     }
 
     @Override
@@ -89,12 +86,13 @@ public final class RealPay extends JavaPlugin {
         GlobalTranslator.translator().addSource(new ColorfulTranslator(store));
     }
 
-    public String getCurrency() {
-        return currency;
+    public String currencyNamePlural() {
+        if (currencyNamePlural == null) currencyNamePlural = getConfig().getString("currency_name_plural");
+        return currencyNamePlural;
     }
 
-    public static @NonNull String formatBalance(double balance) {
-        return RealPay.getPlugin(RealPay.class)
-                .getCurrency() + " " + String.format("%,.2f", balance);
+    public String currencyNameSingular() {
+        if (currencyNameSingular == null) currencyNameSingular = getConfig().getString("currency_name_singular");
+        return currencyNameSingular;
     }
 }
