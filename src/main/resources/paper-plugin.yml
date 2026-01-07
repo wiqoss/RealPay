@@ -1,0 +1,13 @@
+name: RealPay
+version: '1.0-SNAPSHOT'
+main: pl.kiszkiel.realpay.paper.RealPay
+bootstrapper: pl.kiszkiel.realpay.paper.RealPayBootstrapper
+loader: pl.kiszkiel.realpay.paper.RealPayLoader
+api-version: '1.21'
+description: Economy plugin with some little features
+dependencies:
+  server:
+    Vault:
+      load: BEFORE
+      required: true
+      join-classpath: true

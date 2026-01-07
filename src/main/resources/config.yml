@@ -1,0 +1,17 @@
+# Currency displayed in game
+currency: "€"
+# Storage types
+storage:
+  use_type: mysql
+  # MySQL storage type
+  mysql:
+    # Address of your MySQL server
+    address: 192.168.31.60
+    # Port of your MySQL server
+    port: 3306
+    # Name of your database
+    name: development
+    # User to auth by
+    user: root
+    # Password to auth by
+    password: 123456
