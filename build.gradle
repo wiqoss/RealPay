@@ -30,6 +30,21 @@ dependencies {
     compileOnly("com.github.MilkBowl:VaultAPI:1.7") {
         exclude group: "org.bukkit", module: "bukkit"
     }
+
+    // JUnit
+    testImplementation(platform('org.junit:junit-bom:6.0.2'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testRuntimeOnly('org.junit.platform:junit-platform-launcher')
+
+    // MockBukkit
+    testImplementation 'com.github.MockBukkit:MockBukkit:v1.21-SNAPSHOT'
+
+    // Vault and Bukkit
+    testImplementation("com.github.MilkBowl:VaultAPI:1.7") {
+        exclude group: "org.bukkit", module: "bukkit"
+    }
+
+    testImplementation("io.papermc.paper:paper-api:1.21.10-R0.1-SNAPSHOT")
 }
 
 tasks {

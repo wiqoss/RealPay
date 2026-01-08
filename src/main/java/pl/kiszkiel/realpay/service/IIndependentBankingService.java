@@ -2,6 +2,7 @@ package pl.kiszkiel.realpay.service;
 
 import net.milkbowl.vault.economy.EconomyResponse;
 import org.bukkit.OfflinePlayer;
+import pl.kiszkiel.realpay.obj.Bank;
 
 import java.util.List;
 
@@ -40,4 +41,10 @@ public interface IIndependentBankingService {
     public EconomyResponse isBankMember(String name, OfflinePlayer player);
 
     public List<String> getBanks();
+
+    default boolean bankExists(String name) {
+        return getBanks().stream().anyMatch(bank -> bank.equalsIgnoreCase(name));
+    }
+
+    public Bank getBank(String name);
 }
