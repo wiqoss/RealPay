@@ -53,6 +53,9 @@ public class IndependentBankingServiceImpl implements IIndependentBankingService
 
     @Override
     public EconomyResponse withdraw(String name, double amount) {
+        // Is bank exists
+        if (!bankExists(name)) return Responses.quietFailure("Bank doesn't exists");
+
         Bank bank = getBank(name);
 
         // Check for money enough
